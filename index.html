@@ -206,6 +206,23 @@
     }
 
     /* COURSES */
+    .course-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+    .course-tab-btn {
+      padding: 0.6rem 1.5rem;
+      font-size: 0.85rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      transition: color 0.15s, border-color 0.15s;
+      margin-bottom: -1px;
+    }
+    .course-tab-btn:hover { color: var(--accent); }
+    .course-tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+    .course-panel { display: none; }
+    .course-panel.active { display: block; }
     .course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
     .course-card {
       border: 1px solid var(--border);
@@ -397,38 +414,94 @@
 
 <!-- COURSES -->
 <section id="courses">
-  <h2>Courses I Plan to Take</h2>
-  <div class="course-grid">
-    <div class="course-card">
-      <p class="course-dept">AI</p>
-      <p class="course-name">Deep Learning Fundamentals</p>
+  <h2>Courses</h2>
+
+  <div class="course-tabs">
+    <button class="course-tab-btn active" onclick="switchTab(event, 'completed')">Completed</button>
+    <button class="course-tab-btn" onclick="switchTab(event, 'planned')">Planned</button>
+  </div>
+
+  <!-- Completed -->
+  <div id="tab-completed" class="course-panel active">
+    <div class="course-grid">
+      <div class="course-card">
+        <p class="course-dept">AI / CS</p>
+        <p class="course-name">Machine Learning Fundamentals</p>
+      </div>
+      <div class="course-card">
+        <p class="course-dept">AI / CS</p>
+        <p class="course-name">Data Structures</p>
+      </div>
+      <div class="course-card">
+        <p class="course-dept">AI / CS</p>
+        <p class="course-name">Computer Programming</p>
+      </div>
+      <div class="course-card">
+        <p class="course-dept">Engineering</p>
+        <p class="course-name">Dynamics</p>
+      </div>
+      <div class="course-card">
+        <p class="course-dept">Engineering</p>
+        <p class="course-name">Statics</p>
+      </div>
+      <div class="course-card">
+        <p class="course-dept">Engineering</p>
+        <p class="course-name">Thermodynamics</p>
+      </div>
+      <div class="course-card">
+        <p class="course-dept">Naval Arch.</p>
+        <p class="course-name">Ship Calculations</p>
+      </div>
+      <div class="course-card">
+        <p class="course-dept">Naval Arch.</p>
+        <p class="course-name">Computer-Aided Ship Design</p>
+      </div>
     </div>
-    <div class="course-card">
-      <p class="course-dept">Engineering</p>
-      <p class="course-name">Introduction to Control Engineering</p>
-    </div>
-    <div class="course-card">
-      <p class="course-dept">Engineering</p>
-      <p class="course-name">Signal Processing</p>
-    </div>
-    <div class="course-card">
-      <p class="course-dept">Math</p>
-      <p class="course-name">Fundamentals of Random Variables &amp; Stochastic Processes</p>
-    </div>
-    <div class="course-card">
-      <p class="course-dept">Robotics</p>
-      <p class="course-name">Introduction to Robotics</p>
-    </div>
-    <div class="course-card">
-      <p class="course-dept">AI</p>
-      <p class="course-name">Computer Vision</p>
-    </div>
-    <div class="course-card">
-      <p class="course-dept">AI</p>
-      <p class="course-name">Reinforcement Learning &amp; Stochastic Control</p>
+  </div>
+
+  <!-- Planned -->
+  <div id="tab-planned" class="course-panel">
+    <div class="course-grid">
+      <div class="course-card">
+        <p class="course-dept">AI</p>
+        <p class="course-name">Deep Learning Fundamentals</p>
+      </div>
+      <div class="course-card">
+        <p class="course-dept">AI</p>
+        <p class="course-name">Computer Vision</p>
+      </div>
+      <div class="course-card">
+        <p class="course-dept">AI</p>
+        <p class="course-name">Reinforcement Learning &amp; Stochastic Control</p>
+      </div>
+      <div class="course-card">
+        <p class="course-dept">Robotics</p>
+        <p class="course-name">Introduction to Robotics</p>
+      </div>
+      <div class="course-card">
+        <p class="course-dept">Engineering</p>
+        <p class="course-name">Introduction to Control Engineering</p>
+      </div>
+      <div class="course-card">
+        <p class="course-dept">Engineering</p>
+        <p class="course-name">Signal Processing</p>
+      </div>
+      <div class="course-card">
+        <p class="course-dept">Math</p>
+        <p class="course-name">Random Variables &amp; Stochastic Processes</p>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  function switchTab(e, tab) {
+    document.querySelectorAll('.course-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.course-panel').forEach(p => p.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+  }
+</script>
 
 <!-- CONTACT -->
 <section id="contact">
