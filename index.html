@@ -68,21 +68,30 @@
 
     /* ── HERO ── */
     #hero {
-      position: relative;
       width: 100%;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
       display: flex;
-      align-items: flex-end;
-      padding: 0 32px 80px;
+      align-items: center;
+      padding: 120px 32px 80px;
+      background: var(--canvas-night);
     }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: url('assets/profile.jpg') center top / cover no-repeat;
-      filter: brightness(0.45);
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 64px;
     }
-    .hero-content { position: relative; z-index: 1; max-width: 1200px; }
+    .hero-photo {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      object-position: top;
+      flex-shrink: 0;
+      border: 1px solid var(--hairline-dark);
+    }
+    .hero-text { flex: 1; }
     .hero-eyebrow {
       font-size: 12px;
       font-weight: 400;
@@ -324,7 +333,9 @@
       nav { padding: 20px 24px; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      #hero { padding: 0 24px 60px; }
+      #hero { padding: 100px 24px 60px; }
+      .hero-content { flex-direction: column; gap: 32px; }
+      .hero-photo { width: 160px; height: 160px; }
       .band { padding: 60px 24px; }
       .project-item { flex-direction: column; gap: 12px; }
       .cv-row { flex-direction: column; gap: 4px; }
@@ -355,11 +366,13 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Naval Architecture &amp; AI — Seoul National University</p>
-    <h1 class="hero-headline">Shin<br>Jiwoo</h1>
-    <a href="#contact" class="btn-ghost">Get in Touch</a>
+    <img class="hero-photo" src="assets/profile.jpg" alt="Shin Jiwoo" />
+    <div class="hero-text">
+      <p class="hero-eyebrow">Naval Architecture &amp; AI — Seoul National University</p>
+      <h1 class="hero-headline">Shin<br>Jiwoo</h1>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
   </div>
 </section>
 
@@ -376,7 +389,7 @@
       and building robust machines that can reliably operate in the real world.
     </p>
     <div style="margin-top:32px; display:flex; gap:1rem; flex-wrap:wrap;">
-      <a href="assets/cv.pdf" class="btn-ghost" target="_blank">View CV</a>
+      <a href="#cv" class="btn-ghost">View CV</a>
       <a href="https://github.com/shinjju1209" class="btn-ghost" target="_blank">GitHub</a>
     </div>
   </div>
