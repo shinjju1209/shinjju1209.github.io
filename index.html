@@ -6,438 +6,443 @@
   <title>Shin Jiwoo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --canvas-night:      #000000;
-      --canvas-night-soft: #0a0a0a;
-      --canvas-light:      #ffffff;
-      --hairline-dark:     #3a3a3f;
-      --on-primary:        #ffffff;
-      --on-primary-mute:   #f0f0fa;
-      --ink-mute:          #5a5a5f;
-      --pill:              32px;
+      --canvas:          #ffffff;
+      --parchment:       #f5f5f7;
+      --surface-black:   #000000;
+      --tile-1:          #272729;
+      --tile-2:          #2a2a2c;
+      --ink:             #1d1d1f;
+      --body-muted:      #cccccc;
+      --ink-muted-80:    #333333;
+      --ink-muted-48:    #7a7a7a;
+      --hairline:        #e0e0e0;
+      --divider-soft:    rgba(0,0,0,0.04);
+      --primary:         #0066cc;
+      --primary-focus:   #0071e3;
+      --primary-on-dark: #2997ff;
+      --on-dark:         #ffffff;
+      --on-primary:      #ffffff;
+
+      --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --r-sm:   8px;
+      --r-md:   11px;
+      --r-lg:   18px;
+      --r-pill: 9999px;
+
+      --shadow-product: rgba(0,0,0,0.22) 0px 3px 30px 0px;
+
+      --sp-lg:      24px;
+      --sp-xxl:     48px;
+      --sp-section: 80px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', Arial, sans-serif;
-      background: var(--canvas-night);
-      color: var(--on-primary);
-      font-size: 16px;
-      line-height: 1.5;
-      letter-spacing: 0.32px;
+      font-family: var(--font);
+      background: var(--canvas);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.47;
+      letter-spacing: -0.374px;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 32px;
-      background: transparent;
+    /* ── GLOBAL NAV ── */
+    .global-nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: var(--surface-black);
+      height: 44px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 22px;
     }
-    .nav-logo {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.17px;
-      text-transform: uppercase;
-      color: var(--on-primary);
+    .gnav-logo {
+      color: var(--on-dark);
+      font-size: 17px; line-height: 1;
       text-decoration: none;
+      letter-spacing: -0.374px;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.96px;
-      text-transform: uppercase;
-      color: var(--on-primary);
+    .gnav-links {
+      display: flex; list-style: none;
+      position: absolute; left: 50%; transform: translateX(-50%);
+    }
+    .gnav-links a {
+      font-size: 12px; font-weight: 400;
+      line-height: 1; letter-spacing: -0.12px;
+      color: var(--on-dark);
       text-decoration: none;
+      padding: 0 10px;
       opacity: 0.8;
       transition: opacity 0.15s;
     }
-    .nav-links a:hover { opacity: 1; }
-    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
-    .nav-hamburger span { display: block; width: 22px; height: 1px; background: var(--on-primary); }
+    .gnav-links a:hover { opacity: 1; }
+    .gnav-action {
+      font-size: 12px; font-weight: 400;
+      letter-spacing: -0.12px;
+      color: var(--on-dark); text-decoration: none;
+      opacity: 0.8; transition: opacity 0.15s;
+    }
+    .gnav-action:hover { opacity: 1; }
+
+    /* ── SUB-NAV ── */
+    .sub-nav {
+      position: fixed; top: 44px; left: 0; right: 0;
+      z-index: 9998;
+      background: rgba(245,245,247,0.8);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      height: 52px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 22px;
+    }
+    .sub-nav-name {
+      font-size: 21px; font-weight: 600;
+      line-height: 1.19; letter-spacing: 0.231px;
+      color: var(--ink);
+    }
+    .sub-nav-links { display: flex; align-items: center; gap: 20px; }
+    .sub-nav-links a {
+      font-size: 14px; font-weight: 400;
+      letter-spacing: -0.224px;
+      color: var(--ink); text-decoration: none;
+      opacity: 0.8; transition: opacity 0.15s;
+    }
+    .sub-nav-links a:hover { opacity: 1; }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex; align-items: center;
+      padding: 11px 22px;
+      font-size: 17px; font-weight: 400; letter-spacing: -0.374px; line-height: 1;
+      color: var(--on-primary); background: var(--primary);
+      border-radius: var(--r-pill); border: none; cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.1s;
+    }
+    .btn-primary:active { transform: scale(0.95); }
+    .btn-primary:focus-visible { outline: 2px solid var(--primary-focus); outline-offset: 2px; }
+
+    .btn-ghost-pill {
+      display: inline-flex; align-items: center;
+      padding: 11px 22px;
+      font-size: 17px; font-weight: 400; letter-spacing: -0.374px; line-height: 1;
+      color: var(--primary); background: transparent;
+      border: 1px solid var(--primary); border-radius: var(--r-pill);
+      cursor: pointer; text-decoration: none;
+      transition: transform 0.1s;
+    }
+    .btn-ghost-pill:active { transform: scale(0.95); }
+
+    .btn-sm {
+      font-size: 14px; font-weight: 400; letter-spacing: -0.224px;
+      padding: 8px 16px;
+    }
+
+    /* ── TILES ── */
+    .tile { width: 100%; padding: var(--sp-section) 22px; text-align: center; }
+    .tile-inner { max-width: 980px; margin: 0 auto; }
+    .tile-light    { background: var(--canvas);    color: var(--ink); }
+    .tile-parchment{ background: var(--parchment); color: var(--ink); }
+    .tile-dark     { background: var(--tile-1);    color: var(--on-dark); }
+    .tile-dark-2   { background: var(--tile-2);    color: var(--on-dark); }
 
     /* ── HERO ── */
     #hero {
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 32px 80px;
-      background: var(--canvas-night);
+      padding: calc(44px + 52px + var(--sp-section)) 22px var(--sp-section);
+      background: var(--canvas); text-align: center;
     }
-    .hero-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 64px;
+    .hero-inner { max-width: 980px; margin: 0 auto; }
+    .hero-eyebrow {
+      font-size: 17px; font-weight: 400;
+      line-height: 1.47; letter-spacing: -0.374px;
+      color: var(--ink); margin-bottom: 6px;
+    }
+    .hero-h1 {
+      font-size: 56px; font-weight: 600;
+      line-height: 1.07; letter-spacing: -0.28px;
+      color: var(--ink); margin-bottom: 6px;
+    }
+    .hero-tagline {
+      font-size: 28px; font-weight: 400;
+      line-height: 1.14; letter-spacing: 0.196px;
+      color: var(--ink); margin-bottom: 32px;
+    }
+    .hero-ctas {
+      display: flex; gap: 16px; justify-content: center;
+      flex-wrap: wrap; margin-bottom: var(--sp-xxl);
     }
     .hero-photo {
-      width: 220px;
-      height: auto;
-      flex-shrink: 0;
-      border: 1px solid var(--hairline-dark);
-      display: block;
+      width: 220px; height: auto;
+      display: block; margin: 0 auto;
+      box-shadow: var(--shadow-product);
     }
-    .hero-text { flex: 1; }
-    .hero-eyebrow {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.96px;
-      text-transform: uppercase;
-      color: var(--on-primary-mute);
-      margin-bottom: 16px;
-    }
-    .hero-headline {
-      font-size: clamp(48px, 7vw, 80px);
-      font-weight: 700;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-      line-height: 0.95;
-      color: var(--on-primary);
-      margin-bottom: 32px;
-    }
-    .btn-ghost {
-      display: inline-block;
-      padding: 18px 24px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1.17px;
-      text-transform: uppercase;
-      color: var(--on-primary);
-      border: 1px solid var(--on-primary);
-      border-radius: var(--pill);
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
-    }
-    .btn-ghost:hover { background: var(--on-primary); color: var(--canvas-night); }
 
-    /* ── BAND (full-width section) ── */
-    .band {
-      background: var(--canvas-night-soft);
-      padding: 80px 32px;
+    /* ── TILE TYPOGRAPHY ── */
+    .tile-h2 {
+      font-size: 40px; font-weight: 600;
+      line-height: 1.10; letter-spacing: 0;
+      margin-bottom: 8px;
     }
-    .band-inner { max-width: 1200px; margin: 0 auto; }
-    .band.light { background: var(--canvas-night); }
-
-    /* ── SECTION LABELS ── */
-    .eyebrow {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.96px;
-      text-transform: uppercase;
-      color: var(--on-primary-mute);
-      margin-bottom: 24px;
-      border-bottom: 1px solid var(--hairline-dark);
-      padding-bottom: 12px;
-    }
-    .section-title {
-      font-size: clamp(32px, 4vw, 60px);
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      line-height: 1.2;
-      color: var(--on-primary);
-      margin-bottom: 32px;
-    }
-    .body-text {
-      font-size: 16px;
-      font-weight: 400;
-      letter-spacing: 0.32px;
-      line-height: 1.7;
-      color: var(--on-primary-mute);
-      max-width: 640px;
+    .tile-lead {
+      font-size: 28px; font-weight: 400;
+      line-height: 1.14; letter-spacing: 0.196px;
+      margin-bottom: var(--sp-xxl);
     }
 
     /* ── PROJECTS ── */
-    .project-list { margin-top: 40px; }
-    .project-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 2rem;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--hairline-dark);
+    .projects-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px; text-align: left;
     }
-    .project-item:first-child { border-top: 1px solid var(--hairline-dark); }
-    .project-name {
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 1.17px;
-      text-transform: uppercase;
-      color: var(--on-primary);
-      margin-bottom: 8px;
-    }
-    .project-desc {
-      font-size: 14px;
-      color: var(--on-primary-mute);
-      line-height: 1.6;
-      max-width: 560px;
+    .project-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--r-lg); padding: var(--sp-lg);
     }
     .project-tag {
-      font-size: 11px;
-      letter-spacing: 0.96px;
-      text-transform: uppercase;
-      color: var(--on-primary-mute);
-      border: 1px solid var(--hairline-dark);
-      border-radius: var(--pill);
-      padding: 6px 16px;
-      white-space: nowrap;
-      flex-shrink: 0;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.96px; text-transform: uppercase;
+      color: var(--primary-on-dark); margin-bottom: 12px;
+    }
+    .project-name {
+      font-size: 19px; font-weight: 600;
+      line-height: 1.2; letter-spacing: -0.374px;
+      color: var(--on-dark); margin-bottom: 8px;
+    }
+    .project-desc {
+      font-size: 14px; font-weight: 400;
+      line-height: 1.43; letter-spacing: -0.224px;
+      color: var(--body-muted);
     }
 
     /* ── CV ── */
-    .cv-block { margin-bottom: 48px; }
-    .cv-block-title {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.17px;
-      text-transform: uppercase;
-      color: var(--on-primary-mute);
-      margin-bottom: 16px;
+    .cv-block { margin-bottom: var(--sp-xxl); text-align: left; }
+    .cv-block-label {
+      font-size: 14px; font-weight: 600; letter-spacing: -0.224px;
+      color: var(--ink);
+      border-bottom: 1px solid var(--hairline);
+      padding-bottom: 12px;
     }
     .cv-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--hairline-dark);
+      display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 1rem;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--hairline);
     }
-    .cv-row:first-of-type { border-top: 1px solid var(--hairline-dark); }
     .cv-role {
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: var(--on-primary);
-      margin-bottom: 4px;
+      font-size: 17px; font-weight: 600;
+      letter-spacing: -0.374px; line-height: 1.24;
+      color: var(--ink); margin-bottom: 4px;
     }
-    .cv-org { font-size: 13px; color: var(--on-primary-mute); }
-    .cv-date { font-size: 12px; color: var(--on-primary-mute); white-space: nowrap; letter-spacing: 0.5px; }
-    .skills-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .skill-pill {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.17px;
-      text-transform: uppercase;
-      color: var(--on-primary);
-      border: 1px solid var(--hairline-dark);
-      border-radius: var(--pill);
-      padding: 8px 20px;
+    .cv-org {
+      font-size: 17px; font-weight: 400;
+      letter-spacing: -0.374px; color: var(--ink-muted-80);
     }
+    .cv-date {
+      font-size: 14px; font-weight: 400;
+      letter-spacing: -0.224px; color: var(--ink-muted-48);
+      white-space: nowrap;
+    }
+    .skills-list { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 20px; }
+    .skill-chip {
+      font-size: 14px; font-weight: 400; letter-spacing: -0.224px;
+      color: var(--ink); background: var(--canvas);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-pill); padding: 6px 16px;
+    }
+    a.text-link { color: var(--primary); text-decoration: none; }
+    a.text-link:hover { text-decoration: underline; }
 
     /* ── COURSES ── */
-    .course-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--hairline-dark); margin-bottom: 32px; }
+    .course-tabs {
+      display: flex; justify-content: center;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      margin-bottom: 32px;
+    }
     .course-tab-btn {
       padding: 12px 24px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.17px;
-      text-transform: uppercase;
-      background: none;
-      border: none;
-      border-bottom: 2px solid transparent;
-      cursor: pointer;
-      color: var(--on-primary-mute);
-      margin-bottom: -1px;
+      font-size: 15px; font-weight: 400; letter-spacing: -0.224px;
+      background: none; border: none; border-bottom: 2px solid transparent;
+      cursor: pointer; color: var(--body-muted); margin-bottom: -1px;
       transition: color 0.15s, border-color 0.15s;
     }
-    .course-tab-btn:hover { color: var(--on-primary); }
-    .course-tab-btn.active { color: var(--on-primary); border-bottom-color: var(--on-primary); }
+    .course-tab-btn.active { color: var(--on-dark); border-bottom-color: var(--on-dark); }
+    .course-tab-btn:hover  { color: var(--on-dark); }
     .course-panel { display: none; }
     .course-panel.active { display: block; }
-    .course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: var(--hairline-dark); border: 1px solid var(--hairline-dark); }
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px; text-align: left;
+    }
     .course-card {
-      background: var(--canvas-night-soft);
-      padding: 20px 24px;
-      transition: background 0.15s;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--r-lg); padding: 20px;
     }
-    .course-card:hover { background: #111111; }
     .course-dept {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.96px;
-      text-transform: uppercase;
-      color: var(--on-primary-mute);
-      margin-bottom: 6px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.96px; text-transform: uppercase;
+      color: var(--primary-on-dark); margin-bottom: 6px;
     }
-    .course-name { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: var(--on-primary); }
+    .course-name {
+      font-size: 14px; font-weight: 400;
+      letter-spacing: -0.224px; line-height: 1.43;
+      color: var(--on-dark);
+    }
 
     /* ── CONTACT ── */
-    .contact-list { list-style: none; margin-top: 24px; }
-    .contact-row {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--hairline-dark);
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px; margin-top: var(--sp-xxl); text-align: left;
     }
-    .contact-row:first-child { border-top: 1px solid var(--hairline-dark); }
+    .contact-card {
+      border: 1px solid var(--hairline); border-radius: var(--r-lg);
+      padding: var(--sp-lg);
+    }
     .contact-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.17px;
-      text-transform: uppercase;
-      color: var(--on-primary-mute);
-      width: 80px;
-      flex-shrink: 0;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.96px; text-transform: uppercase;
+      color: var(--ink-muted-48); margin-bottom: 8px;
     }
-    .contact-row a {
-      font-size: 14px;
-      color: var(--on-primary);
-      text-decoration: underline;
-      letter-spacing: 0.32px;
+    .contact-value {
+      font-size: 19px; font-weight: 400; letter-spacing: -0.374px;
+      color: var(--primary); text-decoration: none;
     }
-    .contact-row a:hover { color: var(--on-primary-mute); }
+    .contact-value:hover { text-decoration: underline; }
 
     /* ── AI USAGE ── */
-    .ai-box {
-      border: 1px solid var(--hairline-dark);
-      padding: 24px 32px;
-      margin-top: 24px;
+    .ai-card {
+      background: var(--canvas); border: 1px solid var(--hairline);
+      border-radius: var(--r-lg); padding: var(--sp-lg) 32px;
+      text-align: left; max-width: 680px; margin: var(--sp-xxl) auto 0;
     }
-    .ai-box p { font-size: 13px; color: var(--on-primary-mute); line-height: 1.7; letter-spacing: 0.32px; }
-    .ai-box strong { color: var(--on-primary); letter-spacing: 1.17px; text-transform: uppercase; font-size: 11px; }
+    .ai-card p {
+      font-size: 14px; line-height: 1.6; letter-spacing: -0.224px;
+      color: var(--ink-muted-80);
+    }
+    .ai-card strong {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.96px; text-transform: uppercase;
+      color: var(--ink-muted-48);
+    }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--canvas-night);
-      border-top: 1px solid var(--hairline-dark);
-      padding: 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: var(--parchment);
+      border-top: 1px solid var(--hairline);
+      padding: 64px 22px;
     }
-    footer p {
-      font-size: 12px;
-      color: var(--on-primary-mute);
-      letter-spacing: 0.96px;
-      text-transform: uppercase;
+    .footer-inner { max-width: 980px; margin: 0 auto; }
+    .footer-legal {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-legal p {
+      font-size: 12px; font-weight: 400;
+      letter-spacing: -0.12px; line-height: 1;
+      color: var(--ink-muted-48);
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 20px 24px; }
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-      #hero { padding: 100px 24px 60px; }
-      .hero-content { flex-direction: column; gap: 32px; }
-      .hero-photo { width: 160px; }
-      .band { padding: 60px 24px; }
-      .project-item { flex-direction: column; gap: 12px; }
-      .cv-row { flex-direction: column; gap: 4px; }
-      footer { flex-direction: column; gap: 8px; text-align: center; }
+    @media (max-width: 833px) {
+      .gnav-links { display: none; }
+      .sub-nav-links a:not(.btn-primary) { display: none; }
+      .hero-h1   { font-size: 34px; }
+      .hero-tagline { font-size: 21px; }
+      .tile-h2   { font-size: 28px; }
+      .tile-lead { font-size: 21px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .contact-grid  { grid-template-columns: 1fr; }
     }
-    @media (max-width: 600px) {
-      .hero-headline { letter-spacing: 0.8px; }
-      .band { padding: 48px 20px; }
+    @media (max-width: 640px) {
+      .hero-h1   { font-size: 28px; }
+      .tile-h2   { font-size: 24px; }
+      .tile-lead { font-size: 19px; }
+      footer { padding: 40px 22px; }
+      .footer-legal { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#hero">Shin Jiwoo</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
+<!-- GLOBAL NAV -->
+<nav class="global-nav">
+  <a class="gnav-logo" href="#hero">Shin Jiwoo</a>
+  <ul class="gnav-links">
     <li><a href="#projects">Projects</a></li>
     <li><a href="#cv">CV</a></li>
     <li><a href="#courses">Courses</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="nav-hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="https://github.com/shinjju1209" class="gnav-action" target="_blank">GitHub</a>
 </nav>
 
-<!-- HERO -->
+<!-- SUB-NAV -->
+<div class="sub-nav">
+  <span class="sub-nav-name">Shin Jiwoo</span>
+  <div class="sub-nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#cv">CV</a>
+    <a href="#courses">Courses</a>
+    <a href="#contact" class="btn-primary btn-sm">Contact</a>
+  </div>
+</div>
+
+<!-- HERO (white tile) -->
 <section id="hero">
-  <div class="hero-content">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Seoul National University</p>
+    <h1 class="hero-h1">Shin Jiwoo</h1>
+    <p class="hero-tagline">Naval Architecture &amp; AI&thinsp;·&thinsp;Robotics&thinsp;·&thinsp;Reinforcement Learning</p>
+    <div class="hero-ctas">
+      <a href="#cv" class="btn-primary">View CV</a>
+      <a href="#contact" class="btn-ghost-pill">Get in Touch</a>
+    </div>
     <img class="hero-photo" src="assets/profile.jpg" alt="Shin Jiwoo" />
-    <div class="hero-text">
-      <p class="hero-eyebrow">Naval Architecture &amp; AI — Seoul National University</p>
-      <h1 class="hero-headline">Shin<br>Jiwoo</h1>
-      <a href="#contact" class="btn-ghost">Get in Touch</a>
+  </div>
+</section>
+
+<!-- PROJECTS (dark tile) -->
+<section class="tile tile-dark" id="projects">
+  <div class="tile-inner">
+    <h2 class="tile-h2">Work</h2>
+    <p class="tile-lead" style="color:var(--body-muted);">Projects &amp; Activities</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <p class="project-tag">Robotics</p>
+        <h3 class="project-name">2026 Humanoid Challenge — Manipulation Team</h3>
+        <p class="project-desc">Grasp modelling for humanoid robot manipulation tasks. Developing perception and planning pipelines for robust object grasping in unstructured environments.</p>
+      </div>
+      <div class="project-card">
+        <p class="project-tag">Autonomy</p>
+        <h3 class="project-name">2026 KABOAT — Algorithm Team</h3>
+        <p class="project-desc">Autonomous navigation algorithms for an unmanned surface vehicle (USV) competing in the Korea Autonomous Boat Competition. Focus on path planning and obstacle avoidance.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<div class="band light" id="about">
-  <div class="band-inner">
-    <p class="eyebrow">About</p>
-    <h2 class="section-title">Robotics &amp;<br>Autonomy</h2>
-    <p class="body-text">
-      I am an undergraduate student at Seoul National University double-majoring in
-      Naval Architecture and Ocean Engineering and Artificial Intelligence.
-      My research interests lie at the intersection of robotics, reinforcement learning,
-      and autonomous systems — with a particular focus on bridging the sim-to-real gap
-      and building robust machines that can reliably operate in the real world.
-    </p>
-    <div style="margin-top:32px; display:flex; gap:1rem; flex-wrap:wrap;">
-      <a href="#cv" class="btn-ghost">View CV</a>
-      <a href="https://github.com/shinjju1209" class="btn-ghost" target="_blank">GitHub</a>
-    </div>
-  </div>
-</div>
-
-<!-- PROJECTS -->
-<div class="band" id="projects">
-  <div class="band-inner">
-    <p class="eyebrow">Projects &amp; Activities</p>
-    <h2 class="section-title">Work</h2>
-    <div class="project-list">
-      <div class="project-item">
-        <div>
-          <p class="project-name">2026 Humanoid Challenge — Manipulation Team</p>
-          <p class="project-desc">
-            Grasp modelling for humanoid robot manipulation tasks.
-            Developing perception and planning pipelines to enable robust object grasping
-            in unstructured environments.
-          </p>
-        </div>
-        <span class="project-tag">Robotics</span>
-      </div>
-      <div class="project-item">
-        <div>
-          <p class="project-name">2026 KABOAT — Algorithm Team</p>
-          <p class="project-desc">
-            Developing autonomous navigation algorithms for an unmanned surface vehicle (USV)
-            competing in the Korea Autonomous Boat Competition.
-            Focus on path planning and obstacle avoidance.
-          </p>
-        </div>
-        <span class="project-tag">Autonomy</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CV -->
-<div class="band light" id="cv">
-  <div class="band-inner">
-    <p class="eyebrow">CV / Resume</p>
-    <h2 class="section-title">Background</h2>
+<!-- CV (parchment tile) -->
+<section class="tile tile-parchment" id="cv">
+  <div class="tile-inner" style="text-align:left;">
+    <h2 class="tile-h2" style="text-align:center;">Background</h2>
+    <p class="tile-lead" style="text-align:center;color:var(--ink-muted-80);">CV / Resume</p>
 
     <div class="cv-block">
-      <p class="cv-block-title">Education</p>
+      <p class="cv-block-label">Education</p>
       <div class="cv-row">
         <div>
-          <p class="cv-role">B.S. in Naval Architecture and Ocean Engineering</p>
-          <p class="cv-role">B.S. in Artificial Intelligence</p>
+          <p class="cv-role">B.S. Naval Architecture &amp; Ocean Engineering</p>
+          <p class="cv-role">B.S. Artificial Intelligence</p>
           <p class="cv-org">Seoul National University</p>
         </div>
         <span class="cv-date">2022 – Present</span>
@@ -445,18 +450,17 @@
       <div class="cv-row">
         <div>
           <p class="cv-role">Sunduck High School</p>
-          <p class="cv-org">Graduated</p>
         </div>
-        <span class="cv-date">2021</span>
+        <span class="cv-date">Graduated 2021</span>
       </div>
     </div>
 
     <div class="cv-block">
-      <p class="cv-block-title">Experience</p>
+      <p class="cv-block-label">Experience</p>
       <div class="cv-row">
         <div>
-          <p class="cv-role">Member — <a href="https://www.snu-shape.com/" target="_blank" style="color:var(--on-primary);text-underline-offset:3px;">SNU SHAPE (Humanoid Club)</a></p>
-          <p class="cv-org">Seoul National University</p>
+          <p class="cv-role">Member — <a href="https://www.snu-shape.com/" target="_blank" class="text-link">SNU SHAPE</a></p>
+          <p class="cv-org">Seoul National University Humanoid Club</p>
         </div>
         <span class="cv-date">Jan 2026 – Present</span>
       </div>
@@ -470,39 +474,39 @@
       <div class="cv-row">
         <div>
           <p class="cv-role">Algorithm Team Member</p>
-          <p class="cv-org">2026 KABOAT (Korea Autonomous Boat Competition)</p>
+          <p class="cv-org">2026 KABOAT</p>
         </div>
         <span class="cv-date">2026</span>
       </div>
       <div class="cv-row">
         <div>
           <p class="cv-role">Republic of Korea Army — Mandatory Service</p>
-          <p class="cv-org">37th Infantry Division, Intelligence Company — Combined Task Force-Defender (ROK-US)</p>
+          <p class="cv-org">37th Infantry Division · Intelligence Company · Combined Task Force-Defender (ROK-US)</p>
         </div>
         <span class="cv-date">May 2024 – Nov 2025</span>
       </div>
     </div>
 
     <div class="cv-block">
-      <p class="cv-block-title">Skills</p>
+      <p class="cv-block-label">Skills</p>
       <div class="skills-list">
-        <span class="skill-pill">Python</span>
-        <span class="skill-pill">C++</span>
-        <span class="skill-pill">Java</span>
-        <span class="skill-pill">PyTorch</span>
-        <span class="skill-pill">ROS2</span>
-        <span class="skill-pill">Isaac Sim</span>
-        <span class="skill-pill">Fusion 360</span>
+        <span class="skill-chip">Python</span>
+        <span class="skill-chip">C++</span>
+        <span class="skill-chip">Java</span>
+        <span class="skill-chip">PyTorch</span>
+        <span class="skill-chip">ROS2</span>
+        <span class="skill-chip">Isaac Sim</span>
+        <span class="skill-chip">Fusion 360</span>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- COURSES -->
-<div class="band" id="courses">
-  <div class="band-inner">
-    <p class="eyebrow">Courses</p>
-    <h2 class="section-title">Academic</h2>
+<!-- COURSES (dark tile 2) -->
+<section class="tile tile-dark-2" id="courses">
+  <div class="tile-inner">
+    <h2 class="tile-h2">Courses</h2>
+    <p class="tile-lead" style="color:var(--body-muted);">Academic Record</p>
 
     <div class="course-tabs">
       <button class="course-tab-btn active" onclick="switchTab(event,'completed')">Completed</button>
@@ -521,7 +525,6 @@
         <div class="course-card"><p class="course-dept">Naval Arch.</p><p class="course-name">Computer-Aided Ship Design</p></div>
       </div>
     </div>
-
     <div id="tab-planned" class="course-panel">
       <div class="course-grid">
         <div class="course-card"><p class="course-dept">AI</p><p class="course-name">Deep Learning Fundamentals</p></div>
@@ -534,43 +537,47 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- CONTACT -->
-<div class="band light" id="contact">
-  <div class="band-inner">
-    <p class="eyebrow">Contact</p>
-    <h2 class="section-title">Connect</h2>
-    <ul class="contact-list">
-      <li class="contact-row">
-        <span class="contact-label">Email</span>
-        <a href="mailto:deloitte1@snu.ac.kr">deloitte1@snu.ac.kr</a>
-      </li>
-      <li class="contact-row">
-        <span class="contact-label">GitHub</span>
-        <a href="https://github.com/shinjju1209" target="_blank">github.com/shinjju1209</a>
-      </li>
-    </ul>
+<!-- CONTACT (white tile) -->
+<section class="tile tile-light" id="contact">
+  <div class="tile-inner">
+    <h2 class="tile-h2">Let's Connect</h2>
+    <p class="tile-lead" style="color:var(--ink-muted-80);">Contact</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <p class="contact-label">Email</p>
+        <a href="mailto:deloitte1@snu.ac.kr" class="contact-value">deloitte1@snu.ac.kr</a>
+      </div>
+      <div class="contact-card">
+        <p class="contact-label">GitHub</p>
+        <a href="https://github.com/shinjju1209" class="contact-value" target="_blank">github.com/shinjju1209</a>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- AI USAGE -->
-<div class="band" id="ai-usage">
-  <div class="band-inner">
-    <p class="eyebrow">AI Usage</p>
-    <div class="ai-box">
+<!-- AI USAGE (parchment tile) -->
+<section class="tile tile-parchment" id="ai-usage">
+  <div class="tile-inner">
+    <h2 class="tile-h2" style="font-size:28px;margin-bottom:0;">AI Usage</h2>
+    <div class="ai-card">
       <p>
-        <strong>Tool:</strong> Claude Code (Anthropic)<br /><br />
-        <strong>Prompt:</strong> Build a static personal website in the repo root. Use assets/profile.jpg as the profile image. Include About Me, Projects, CV, planned courses, and contact sections. Keep the site simple and compatible with GitHub Pages. Make the page responsive and accessible. Apply SpaceX-inspired DESIGN.md theme with black canvas, uppercase display type, ghost pill CTAs, and full-bleed photography.
+        <strong>Tool</strong>&nbsp;&nbsp;Claude Code (Anthropic)<br /><br />
+        <strong>Prompt</strong>&nbsp;&nbsp;Build a static personal website in the repo root. Use assets/profile.jpg as the profile image. Include About Me, Projects, CV, planned courses, and contact sections. Keep the site simple and compatible with GitHub Pages. Make the page responsive and accessible. Apply Apple-inspired design system: black global nav, frosted sub-nav, alternating light/dark tiles, single #0066cc Action Blue accent, SF Pro typography stack with negative letter-spacing, and pill CTAs.
       </p>
     </div>
   </div>
-</div>
+</section>
 
 <!-- FOOTER -->
 <footer>
-  <p>&copy; 2026 Shin Jiwoo</p>
-  <p>Seoul National University</p>
+  <div class="footer-inner">
+    <div class="footer-legal">
+      <p>Copyright &copy; 2026 Shin Jiwoo. All rights reserved.</p>
+      <p>Seoul National University</p>
+    </div>
+  </div>
 </footer>
 
 <script>
