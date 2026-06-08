@@ -4,270 +4,335 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shin Jiwoo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #ffffff;
-      --surface: #f5f5f5;
-      --border: #e0e0e0;
-      --text: #1a1a1a;
-      --muted: #666666;
-      --accent: #0062fe;
-      --accent-hover: #0050d0;
-      --nav-bg: #ffffff;
-      --radius: 4px;
-      --font: 'IBM Plex Sans', 'Segoe UI', Arial, sans-serif;
+      --canvas-night:      #000000;
+      --canvas-night-soft: #0a0a0a;
+      --canvas-light:      #ffffff;
+      --hairline-dark:     #3a3a3f;
+      --on-primary:        #ffffff;
+      --on-primary-mute:   #f0f0fa;
+      --ink-mute:          #5a5a5f;
+      --pill:              32px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      font-family: 'Inter', Arial, sans-serif;
+      background: var(--canvas-night);
+      color: var(--on-primary);
       font-size: 16px;
+      line-height: 1.5;
+      letter-spacing: 0.32px;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--nav-bg);
-      border-bottom: 1px solid var(--border);
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 2rem;
-      height: 52px;
+      padding: 24px 32px;
+      background: transparent;
     }
     .nav-logo {
-      font-weight: 600;
-      font-size: 1rem;
-      letter-spacing: 0.02em;
-      color: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.17px;
+      text-transform: uppercase;
+      color: var(--on-primary);
       text-decoration: none;
     }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 0.9rem;
-      letter-spacing: 0.03em;
-      transition: color 0.15s;
-    }
-    .nav-links a:hover { color: var(--accent); }
-
-    /* SECTIONS */
-    section { padding: 5rem 2rem; max-width: 860px; margin: 0 auto; }
-    section + section { border-top: 1px solid var(--border); }
-
-    h2 {
-      font-size: 0.75rem;
+      font-size: 12px;
       font-weight: 400;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.96px;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-
-    /* HERO */
-    #about {
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-      padding-top: 6rem;
-    }
-    .hero-photo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid var(--border);
-      flex-shrink: 0;
-      background: var(--surface);
-    }
-    .hero-avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      color: var(--muted);
-    }
-    .hero-text .label {
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-    .hero-text h1 {
-      font-size: 2.2rem;
-      font-weight: 300;
-      letter-spacing: -0.01em;
-      line-height: 1.2;
-      margin-bottom: 0.75rem;
-    }
-    .hero-text .tagline {
-      color: var(--muted);
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.5;
-    }
-    .btn-group { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .btn {
-      display: inline-block;
-      padding: 0.55rem 1.25rem;
-      font-size: 0.875rem;
+      color: var(--on-primary);
       text-decoration: none;
-      border-radius: var(--radius);
-      transition: background 0.15s, color 0.15s;
-      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.15s;
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      border: 1px solid var(--accent);
-    }
-    .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-links a:hover { opacity: 1; }
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
+    .nav-hamburger span { display: block; width: 22px; height: 1px; background: var(--on-primary); }
 
-    /* INTRO TEXT */
-    #intro p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.8;
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 32px 80px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('assets/profile.jpg') center top / cover no-repeat;
+      filter: brightness(0.45);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 1200px; }
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.96px;
+      text-transform: uppercase;
+      color: var(--on-primary-mute);
+      margin-bottom: 16px;
+    }
+    .hero-headline {
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      line-height: 0.95;
+      color: var(--on-primary);
+      margin-bottom: 32px;
+    }
+    .btn-ghost {
+      display: inline-block;
+      padding: 18px 24px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.17px;
+      text-transform: uppercase;
+      color: var(--on-primary);
+      border: 1px solid var(--on-primary);
+      border-radius: var(--pill);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { background: var(--on-primary); color: var(--canvas-night); }
+
+    /* ── BAND (full-width section) ── */
+    .band {
+      background: var(--canvas-night-soft);
+      padding: 80px 32px;
+    }
+    .band-inner { max-width: 1200px; margin: 0 auto; }
+    .band.light { background: var(--canvas-night); }
+
+    /* ── SECTION LABELS ── */
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.96px;
+      text-transform: uppercase;
+      color: var(--on-primary-mute);
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--hairline-dark);
+      padding-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(32px, 4vw, 60px);
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      line-height: 1.2;
+      color: var(--on-primary);
+      margin-bottom: 32px;
+    }
+    .body-text {
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.32px;
+      line-height: 1.7;
+      color: var(--on-primary-mute);
       max-width: 640px;
     }
 
-    /* PROJECTS */
-    .project-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .project-card {
-      background: var(--bg);
-      padding: 1.5rem;
+    /* ── PROJECTS ── */
+    .project-list { margin-top: 40px; }
+    .project-item {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 1rem;
+      gap: 2rem;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--hairline-dark);
     }
-    .project-card:hover { background: var(--surface); }
-    .project-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
-    .project-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.5; }
-    .project-tag {
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
+    .project-item:first-child { border-top: 1px solid var(--hairline-dark); }
+    .project-name {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1.17px;
       text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 0.2rem 0.55rem;
-      border-radius: var(--radius);
+      color: var(--on-primary);
+      margin-bottom: 8px;
+    }
+    .project-desc {
+      font-size: 14px;
+      color: var(--on-primary-mute);
+      line-height: 1.6;
+      max-width: 560px;
+    }
+    .project-tag {
+      font-size: 11px;
+      letter-spacing: 0.96px;
+      text-transform: uppercase;
+      color: var(--on-primary-mute);
+      border: 1px solid var(--hairline-dark);
+      border-radius: var(--pill);
+      padding: 6px 16px;
       white-space: nowrap;
       flex-shrink: 0;
     }
 
-    /* CV */
-    .cv-block { margin-bottom: 2.5rem; }
-    .cv-block h3 {
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+    /* ── CV ── */
+    .cv-block { margin-bottom: 48px; }
+    .cv-block-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.17px;
       text-transform: uppercase;
-      color: var(--text);
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
+      color: var(--on-primary-mute);
+      margin-bottom: 16px;
     }
-    .cv-item { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--surface); }
-    .cv-item:last-child { border-bottom: none; }
-    .cv-item-left .cv-role { font-size: 0.9rem; font-weight: 500; }
-    .cv-item-left .cv-org { font-size: 0.85rem; color: var(--muted); }
-    .cv-item-right { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
-    .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
-    .skill-tag {
-      font-size: 0.8rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 0.3rem 0.75rem;
-      border-radius: var(--radius);
-      color: var(--text);
+    .cv-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--hairline-dark);
+    }
+    .cv-row:first-of-type { border-top: 1px solid var(--hairline-dark); }
+    .cv-role {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--on-primary);
+      margin-bottom: 4px;
+    }
+    .cv-org { font-size: 13px; color: var(--on-primary-mute); }
+    .cv-date { font-size: 12px; color: var(--on-primary-mute); white-space: nowrap; letter-spacing: 0.5px; }
+    .skills-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .skill-pill {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.17px;
+      text-transform: uppercase;
+      color: var(--on-primary);
+      border: 1px solid var(--hairline-dark);
+      border-radius: var(--pill);
+      padding: 8px 20px;
     }
 
-    /* COURSES */
-    .course-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+    /* ── COURSES ── */
+    .course-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--hairline-dark); margin-bottom: 32px; }
     .course-tab-btn {
-      padding: 0.6rem 1.5rem;
-      font-size: 0.85rem;
+      padding: 12px 24px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.17px;
+      text-transform: uppercase;
       background: none;
       border: none;
       border-bottom: 2px solid transparent;
       cursor: pointer;
-      color: var(--muted);
-      letter-spacing: 0.03em;
-      transition: color 0.15s, border-color 0.15s;
+      color: var(--on-primary-mute);
       margin-bottom: -1px;
+      transition: color 0.15s, border-color 0.15s;
     }
-    .course-tab-btn:hover { color: var(--accent); }
-    .course-tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+    .course-tab-btn:hover { color: var(--on-primary); }
+    .course-tab-btn.active { color: var(--on-primary); border-bottom-color: var(--on-primary); }
     .course-panel { display: none; }
     .course-panel.active { display: block; }
-    .course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: var(--hairline-dark); border: 1px solid var(--hairline-dark); }
     .course-card {
-      border: 1px solid var(--border);
-      padding: 1rem 1.25rem;
-      border-radius: var(--radius);
-      background: var(--bg);
+      background: var(--canvas-night-soft);
+      padding: 20px 24px;
+      transition: background 0.15s;
     }
-    .course-card:hover { border-color: var(--accent); }
-    .course-card .course-dept { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
-    .course-card .course-name { font-size: 0.875rem; font-weight: 500; }
+    .course-card:hover { background: #111111; }
+    .course-dept {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.96px;
+      text-transform: uppercase;
+      color: var(--on-primary-mute);
+      margin-bottom: 6px;
+    }
+    .course-name { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: var(--on-primary); }
 
-    /* CONTACT */
-    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-    .contact-list li { display: flex; align-items: center; gap: 1rem; }
-    .contact-list .contact-label { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); width: 80px; }
-    .contact-list a { color: var(--text); text-decoration: none; font-size: 0.95rem; }
-    .contact-list a:hover { color: var(--accent); }
+    /* ── CONTACT ── */
+    .contact-list { list-style: none; margin-top: 24px; }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--hairline-dark);
+    }
+    .contact-row:first-child { border-top: 1px solid var(--hairline-dark); }
+    .contact-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.17px;
+      text-transform: uppercase;
+      color: var(--on-primary-mute);
+      width: 80px;
+      flex-shrink: 0;
+    }
+    .contact-row a {
+      font-size: 14px;
+      color: var(--on-primary);
+      text-decoration: underline;
+      letter-spacing: 0.32px;
+    }
+    .contact-row a:hover { color: var(--on-primary-mute); }
 
-    /* AI USAGE */
+    /* ── AI USAGE ── */
     .ai-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--hairline-dark);
+      padding: 24px 32px;
+      margin-top: 24px;
     }
-    .ai-box p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
-    .ai-box strong { color: var(--text); }
+    .ai-box p { font-size: 13px; color: var(--on-primary-mute); line-height: 1.7; letter-spacing: 0.32px; }
+    .ai-box strong { color: var(--on-primary); letter-spacing: 1.17px; text-transform: uppercase; font-size: 11px; }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
-      background: #1a1a1a;
-      color: #aaa;
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.03em;
+      background: var(--canvas-night);
+      border-top: 1px solid var(--hairline-dark);
+      padding: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p {
+      font-size: 12px;
+      color: var(--on-primary-mute);
+      letter-spacing: 0.96px;
+      text-transform: uppercase;
     }
 
-    /* RESPONSIVE */
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      #hero { padding: 0 24px 60px; }
+      .band { padding: 60px 24px; }
+      .project-item { flex-direction: column; gap: 12px; }
+      .cv-row { flex-direction: column; gap: 4px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
     @media (max-width: 600px) {
-      #about { flex-direction: column; gap: 1.5rem; text-align: center; }
-      .btn-group { justify-content: center; }
-      .project-card { flex-direction: column; }
-      .cv-item { flex-direction: column; gap: 0.25rem; }
-      .nav-links { gap: 1rem; }
+      .hero-headline { letter-spacing: 0.8px; }
+      .band { padding: 48px 20px; }
     }
   </style>
 </head>
@@ -275,224 +340,226 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#about">Shin Jiwoo</a>
+  <a class="nav-logo" href="#hero">Shin Jiwoo</a>
   <ul class="nav-links">
-    <li><a href="#intro">About</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#cv">CV</a></li>
     <li><a href="#courses">Courses</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
-<section id="about">
-  <img class="hero-photo" src="assets/profile.jpg" alt="Shin Jiwoo" />
-  <div class="hero-text">
-    <p class="label">Naval Architecture &amp; AI — Seoul National University</p>
-    <h1>Shin Jiwoo</h1>
-    <p class="tagline">
-      Robotics &middot; Reinforcement Learning &middot; Autonomous Driving
-    </p>
-    <div class="btn-group">
-      <a href="assets/cv.pdf" class="btn btn-primary" target="_blank">View CV</a>
-      <a href="#contact" class="btn btn-secondary">Get in touch</a>
-      <a href="https://github.com/shinjju1209" class="btn btn-secondary" target="_blank">GitHub</a>
-    </div>
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Naval Architecture &amp; AI — Seoul National University</p>
+    <h1 class="hero-headline">Shin<br>Jiwoo</h1>
+    <a href="#contact" class="btn-ghost">Get in Touch</a>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section id="intro">
-  <h2>About Me</h2>
-  <p>
-    I am an undergraduate student at Seoul National University double-majoring in
-    Naval Architecture and Ocean Engineering and Artificial Intelligence.
-    My research interests lie at the intersection of robotics, reinforcement learning,
-    and autonomous systems — with a particular focus on bridging the sim-to-real gap
-    and building robust machines that can reliably operate in the real world.
-  </p>
-</section>
+<div class="band light" id="about">
+  <div class="band-inner">
+    <p class="eyebrow">About</p>
+    <h2 class="section-title">Robotics &amp;<br>Autonomy</h2>
+    <p class="body-text">
+      I am an undergraduate student at Seoul National University double-majoring in
+      Naval Architecture and Ocean Engineering and Artificial Intelligence.
+      My research interests lie at the intersection of robotics, reinforcement learning,
+      and autonomous systems — with a particular focus on bridging the sim-to-real gap
+      and building robust machines that can reliably operate in the real world.
+    </p>
+    <div style="margin-top:32px; display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="assets/cv.pdf" class="btn-ghost" target="_blank">View CV</a>
+      <a href="https://github.com/shinjju1209" class="btn-ghost" target="_blank">GitHub</a>
+    </div>
+  </div>
+</div>
 
 <!-- PROJECTS -->
-<section id="projects">
-  <h2>Projects &amp; Activities</h2>
-  <div class="project-grid">
-    <div class="project-card">
-      <div>
-        <p class="project-title">2026 Humanoid Challenge — Manipulation Team</p>
-        <p class="project-desc">
-          Grasp modelling for humanoid robot manipulation tasks.
-          Developing perception and planning pipelines to enable robust object grasping
-          in unstructured environments.
-        </p>
+<div class="band" id="projects">
+  <div class="band-inner">
+    <p class="eyebrow">Projects &amp; Activities</p>
+    <h2 class="section-title">Work</h2>
+    <div class="project-list">
+      <div class="project-item">
+        <div>
+          <p class="project-name">2026 Humanoid Challenge — Manipulation Team</p>
+          <p class="project-desc">
+            Grasp modelling for humanoid robot manipulation tasks.
+            Developing perception and planning pipelines to enable robust object grasping
+            in unstructured environments.
+          </p>
+        </div>
+        <span class="project-tag">Robotics</span>
       </div>
-      <span class="project-tag">Robotics</span>
-    </div>
-    <div class="project-card">
-      <div>
-        <p class="project-title">2026 KABOAT — Algorithm Team</p>
-        <p class="project-desc">
-          Developing autonomous navigation algorithms for an unmanned surface vehicle (USV)
-          competing in the Korea Autonomous Boat Competition (KABOAT).
-          Focus on path planning and obstacle avoidance.
-        </p>
+      <div class="project-item">
+        <div>
+          <p class="project-name">2026 KABOAT — Algorithm Team</p>
+          <p class="project-desc">
+            Developing autonomous navigation algorithms for an unmanned surface vehicle (USV)
+            competing in the Korea Autonomous Boat Competition.
+            Focus on path planning and obstacle avoidance.
+          </p>
+        </div>
+        <span class="project-tag">Autonomy</span>
       </div>
-      <span class="project-tag">Autonomy</span>
     </div>
   </div>
-</section>
+</div>
 
 <!-- CV -->
-<section id="cv">
-  <h2>CV / Resume</h2>
+<div class="band light" id="cv">
+  <div class="band-inner">
+    <p class="eyebrow">CV / Resume</p>
+    <h2 class="section-title">Background</h2>
 
-  <div class="cv-block">
-    <h3>Education</h3>
-    <div class="cv-item">
-      <div class="cv-item-left">
-        <p class="cv-role">B.S. in Naval Architecture and Ocean Engineering</p>
-        <p class="cv-role">B.S. in Artificial Intelligence</p>
-        <p class="cv-org">Seoul National University</p>
+    <div class="cv-block">
+      <p class="cv-block-title">Education</p>
+      <div class="cv-row">
+        <div>
+          <p class="cv-role">B.S. in Naval Architecture and Ocean Engineering</p>
+          <p class="cv-role">B.S. in Artificial Intelligence</p>
+          <p class="cv-org">Seoul National University</p>
+        </div>
+        <span class="cv-date">2022 – Present</span>
       </div>
-      <div class="cv-item-right">2022 &ndash; Present</div>
+      <div class="cv-row">
+        <div>
+          <p class="cv-role">Sunduck High School</p>
+          <p class="cv-org">Graduated</p>
+        </div>
+        <span class="cv-date">2021</span>
+      </div>
     </div>
-    <div class="cv-item">
-      <div class="cv-item-left">
-        <p class="cv-role">Sunduck High School</p>
-        <p class="cv-org">Graduated</p>
+
+    <div class="cv-block">
+      <p class="cv-block-title">Experience</p>
+      <div class="cv-row">
+        <div>
+          <p class="cv-role">Member — <a href="https://www.snu-shape.com/" target="_blank" style="color:var(--on-primary);text-underline-offset:3px;">SNU SHAPE (Humanoid Club)</a></p>
+          <p class="cv-org">Seoul National University</p>
+        </div>
+        <span class="cv-date">Jan 2026 – Present</span>
       </div>
-      <div class="cv-item-right">2021</div>
+      <div class="cv-row">
+        <div>
+          <p class="cv-role">Manipulation Team Member</p>
+          <p class="cv-org">2026 Humanoid Challenge</p>
+        </div>
+        <span class="cv-date">2026</span>
+      </div>
+      <div class="cv-row">
+        <div>
+          <p class="cv-role">Algorithm Team Member</p>
+          <p class="cv-org">2026 KABOAT (Korea Autonomous Boat Competition)</p>
+        </div>
+        <span class="cv-date">2026</span>
+      </div>
+      <div class="cv-row">
+        <div>
+          <p class="cv-role">Republic of Korea Army — Mandatory Service</p>
+          <p class="cv-org">37th Infantry Division, Intelligence Company — Combined Task Force-Defender (ROK-US)</p>
+        </div>
+        <span class="cv-date">May 2024 – Nov 2025</span>
+      </div>
+    </div>
+
+    <div class="cv-block">
+      <p class="cv-block-title">Skills</p>
+      <div class="skills-list">
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">C++</span>
+        <span class="skill-pill">Java</span>
+        <span class="skill-pill">PyTorch</span>
+        <span class="skill-pill">ROS2</span>
+        <span class="skill-pill">Isaac Sim</span>
+        <span class="skill-pill">Fusion 360</span>
+      </div>
     </div>
   </div>
-
-  <div class="cv-block">
-    <h3>Experience</h3>
-    <div class="cv-item">
-      <div class="cv-item-left">
-        <p class="cv-role">Member — <a href="https://www.snu-shape.com/" target="_blank" style="color:var(--accent);text-decoration:none;">SNU SHAPE (Humanoid Club)</a></p>
-        <p class="cv-org">Seoul National University</p>
-      </div>
-      <div class="cv-item-right">Jan 2026 &ndash; Present</div>
-    </div>
-    <div class="cv-item">
-      <div class="cv-item-left">
-        <p class="cv-role">Republic of Korea Army — Mandatory Service</p>
-        <p class="cv-org">37th Infantry Division, Intelligence Company &mdash; Combined Task Force-Defender (ROK-US)</p>
-      </div>
-      <div class="cv-item-right">May 2024 &ndash; Nov 2025</div>
-    </div>
-    <div class="cv-item">
-      <div class="cv-item-left">
-        <p class="cv-role">Manipulation Team Member</p>
-        <p class="cv-org">2026 Humanoid Challenge</p>
-      </div>
-      <div class="cv-item-right">2026</div>
-    </div>
-    <div class="cv-item">
-      <div class="cv-item-left">
-        <p class="cv-role">Algorithm Team Member</p>
-        <p class="cv-org">2026 KABOAT (Korea Autonomous Boat Competition)</p>
-      </div>
-      <div class="cv-item-right">2026</div>
-    </div>
-  </div>
-
-  <div class="cv-block">
-    <h3>Skills</h3>
-    <div class="skills-list">
-      <span class="skill-tag">Python</span>
-      <span class="skill-tag">C++</span>
-      <span class="skill-tag">Java</span>
-      <span class="skill-tag">PyTorch</span>
-      <span class="skill-tag">Fusion 360</span>
-      <span class="skill-tag">ROS2</span>
-      <span class="skill-tag">Isaac Sim</span>
-    </div>
-  </div>
-</section>
+</div>
 
 <!-- COURSES -->
-<section id="courses">
-  <h2>Courses</h2>
+<div class="band" id="courses">
+  <div class="band-inner">
+    <p class="eyebrow">Courses</p>
+    <h2 class="section-title">Academic</h2>
 
-  <div class="course-tabs">
-    <button class="course-tab-btn active" onclick="switchTab(event, 'completed')">Completed</button>
-    <button class="course-tab-btn" onclick="switchTab(event, 'planned')">Planned</button>
-  </div>
+    <div class="course-tabs">
+      <button class="course-tab-btn active" onclick="switchTab(event,'completed')">Completed</button>
+      <button class="course-tab-btn" onclick="switchTab(event,'planned')">Planned</button>
+    </div>
 
-  <!-- Completed -->
-  <div id="tab-completed" class="course-panel active">
-    <div class="course-grid">
-      <div class="course-card">
-        <p class="course-dept">AI / CS</p>
-        <p class="course-name">Machine Learning Fundamentals</p>
+    <div id="tab-completed" class="course-panel active">
+      <div class="course-grid">
+        <div class="course-card"><p class="course-dept">AI / CS</p><p class="course-name">Machine Learning Fundamentals</p></div>
+        <div class="course-card"><p class="course-dept">AI / CS</p><p class="course-name">Data Structures</p></div>
+        <div class="course-card"><p class="course-dept">AI / CS</p><p class="course-name">Computer Programming</p></div>
+        <div class="course-card"><p class="course-dept">Engineering</p><p class="course-name">Dynamics</p></div>
+        <div class="course-card"><p class="course-dept">Engineering</p><p class="course-name">Statics</p></div>
+        <div class="course-card"><p class="course-dept">Engineering</p><p class="course-name">Thermodynamics</p></div>
+        <div class="course-card"><p class="course-dept">Naval Arch.</p><p class="course-name">Ship Calculations</p></div>
+        <div class="course-card"><p class="course-dept">Naval Arch.</p><p class="course-name">Computer-Aided Ship Design</p></div>
       </div>
-      <div class="course-card">
-        <p class="course-dept">AI / CS</p>
-        <p class="course-name">Data Structures</p>
-      </div>
-      <div class="course-card">
-        <p class="course-dept">AI / CS</p>
-        <p class="course-name">Computer Programming</p>
-      </div>
-      <div class="course-card">
-        <p class="course-dept">Engineering</p>
-        <p class="course-name">Dynamics</p>
-      </div>
-      <div class="course-card">
-        <p class="course-dept">Engineering</p>
-        <p class="course-name">Statics</p>
-      </div>
-      <div class="course-card">
-        <p class="course-dept">Engineering</p>
-        <p class="course-name">Thermodynamics</p>
-      </div>
-      <div class="course-card">
-        <p class="course-dept">Naval Arch.</p>
-        <p class="course-name">Ship Calculations</p>
-      </div>
-      <div class="course-card">
-        <p class="course-dept">Naval Arch.</p>
-        <p class="course-name">Computer-Aided Ship Design</p>
+    </div>
+
+    <div id="tab-planned" class="course-panel">
+      <div class="course-grid">
+        <div class="course-card"><p class="course-dept">AI</p><p class="course-name">Deep Learning Fundamentals</p></div>
+        <div class="course-card"><p class="course-dept">AI</p><p class="course-name">Computer Vision</p></div>
+        <div class="course-card"><p class="course-dept">AI</p><p class="course-name">Reinforcement Learning &amp; Stochastic Control</p></div>
+        <div class="course-card"><p class="course-dept">Robotics</p><p class="course-name">Introduction to Robotics</p></div>
+        <div class="course-card"><p class="course-dept">Engineering</p><p class="course-name">Introduction to Control Engineering</p></div>
+        <div class="course-card"><p class="course-dept">Engineering</p><p class="course-name">Signal Processing</p></div>
+        <div class="course-card"><p class="course-dept">Math</p><p class="course-name">Random Variables &amp; Stochastic Processes</p></div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Planned -->
-  <div id="tab-planned" class="course-panel">
-    <div class="course-grid">
-      <div class="course-card">
-        <p class="course-dept">AI</p>
-        <p class="course-name">Deep Learning Fundamentals</p>
-      </div>
-      <div class="course-card">
-        <p class="course-dept">AI</p>
-        <p class="course-name">Computer Vision</p>
-      </div>
-      <div class="course-card">
-        <p class="course-dept">AI</p>
-        <p class="course-name">Reinforcement Learning &amp; Stochastic Control</p>
-      </div>
-      <div class="course-card">
-        <p class="course-dept">Robotics</p>
-        <p class="course-name">Introduction to Robotics</p>
-      </div>
-      <div class="course-card">
-        <p class="course-dept">Engineering</p>
-        <p class="course-name">Introduction to Control Engineering</p>
-      </div>
-      <div class="course-card">
-        <p class="course-dept">Engineering</p>
-        <p class="course-name">Signal Processing</p>
-      </div>
-      <div class="course-card">
-        <p class="course-dept">Math</p>
-        <p class="course-name">Random Variables &amp; Stochastic Processes</p>
-      </div>
+<!-- CONTACT -->
+<div class="band light" id="contact">
+  <div class="band-inner">
+    <p class="eyebrow">Contact</p>
+    <h2 class="section-title">Connect</h2>
+    <ul class="contact-list">
+      <li class="contact-row">
+        <span class="contact-label">Email</span>
+        <a href="mailto:deloitte1@snu.ac.kr">deloitte1@snu.ac.kr</a>
+      </li>
+      <li class="contact-row">
+        <span class="contact-label">GitHub</span>
+        <a href="https://github.com/shinjju1209" target="_blank">github.com/shinjju1209</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- AI USAGE -->
+<div class="band" id="ai-usage">
+  <div class="band-inner">
+    <p class="eyebrow">AI Usage</p>
+    <div class="ai-box">
+      <p>
+        <strong>Tool:</strong> Claude Code (Anthropic)<br /><br />
+        <strong>Prompt:</strong> Build a static personal website in the repo root. Use assets/profile.jpg as the profile image. Include About Me, Projects, CV, planned courses, and contact sections. Keep the site simple and compatible with GitHub Pages. Make the page responsive and accessible. Apply SpaceX-inspired DESIGN.md theme with black canvas, uppercase display type, ghost pill CTAs, and full-bleed photography.
+      </p>
     </div>
   </div>
-</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Shin Jiwoo</p>
+  <p>Seoul National University</p>
+</footer>
 
 <script>
   function switchTab(e, tab) {
@@ -502,37 +569,6 @@
     document.getElementById('tab-' + tab).classList.add('active');
   }
 </script>
-
-<!-- CONTACT -->
-<section id="contact">
-  <h2>Contact</h2>
-  <ul class="contact-list">
-    <li>
-      <span class="contact-label">Email</span>
-      <a href="mailto:deloitte1@snu.ac.kr">deloitte1@snu.ac.kr</a>
-    </li>
-    <li>
-      <span class="contact-label">GitHub</span>
-      <a href="https://github.com/shinjju1209" target="_blank">github.com/shinjju1209</a>
-    </li>
-  </ul>
-</section>
-
-<!-- AI USAGE -->
-<section id="ai-usage">
-  <h2>AI Usage</h2>
-  <div class="ai-box">
-    <p>
-      <strong>Tool:</strong> Claude Code (Anthropic)<br />
-      <strong>Prompt:</strong> Build a static personal website in the repo root. Use assets/profile.jpg as the profile image. Include About Me, Projects, CV, planned courses, and contact sections. Keep the site simple and compatible with GitHub Pages. Make the page responsive and accessible.
-    </p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <p>&copy; 2026 Shin Jiwoo &mdash; Seoul National University</p>
-</footer>
 
 </body>
 </html>
