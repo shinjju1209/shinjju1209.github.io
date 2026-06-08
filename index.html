@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shin Jiwoo</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f5f5;
+      --border: #e0e0e0;
+      --text: #1a1a1a;
+      --muted: #666666;
+      --accent: #0062fe;
+      --accent-hover: #0050d0;
+      --nav-bg: #ffffff;
+      --radius: 4px;
+      --font: 'IBM Plex Sans', 'Segoe UI', Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 52px;
+    }
+    .nav-logo {
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; max-width: 860px; margin: 0 auto; }
+    section + section { border-top: 1px solid var(--border); }
+
+    h2 {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* HERO */
+    #about {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      padding-top: 6rem;
+    }
+    .hero-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+      background: var(--surface);
+    }
+    .hero-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: var(--muted);
+    }
+    .hero-text .label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .hero-text h1 {
+      font-size: 2.2rem;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .hero-text .tagline {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .btn-group { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 0.55rem 1.25rem;
+      font-size: 0.875rem;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: background 0.15s, color 0.15s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* INTRO TEXT */
+    #intro p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+
+    /* PROJECTS */
+    .project-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .project-card {
+      background: var(--bg);
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .project-card:hover { background: var(--surface); }
+    .project-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .project-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.5; }
+    .project-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* CV */
+    .cv-block { margin-bottom: 2.5rem; }
+    .cv-block h3 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .cv-item { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--surface); }
+    .cv-item:last-child { border-bottom: none; }
+    .cv-item-left .cv-role { font-size: 0.9rem; font-weight: 500; }
+    .cv-item-left .cv-org { font-size: 0.85rem; color: var(--muted); }
+    .cv-item-right { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+    .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .skill-tag {
+      font-size: 0.8rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius);
+      color: var(--text);
+    }
+
+    /* COURSES */
+    .course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .course-card {
+      border: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      background: var(--bg);
+    }
+    .course-card:hover { border-color: var(--accent); }
+    .course-card .course-dept { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
+    .course-card .course-name { font-size: 0.875rem; font-weight: 500; }
+
+    /* CONTACT */
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .contact-list li { display: flex; align-items: center; gap: 1rem; }
+    .contact-list .contact-label { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); width: 80px; }
+    .contact-list a { color: var(--text); text-decoration: none; font-size: 0.95rem; }
+    .contact-list a:hover { color: var(--accent); }
+
+    /* AI USAGE */
+    .ai-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+    }
+    .ai-box p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+    .ai-box strong { color: var(--text); }
+
+    /* FOOTER */
+    footer {
+      background: #1a1a1a;
+      color: #aaa;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      #about { flex-direction: column; gap: 1.5rem; text-align: center; }
+      .btn-group { justify-content: center; }
+      .project-card { flex-direction: column; }
+      .cv-item { flex-direction: column; gap: 0.25rem; }
+      .nav-links { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#about">Shin Jiwoo</a>
+  <ul class="nav-links">
+    <li><a href="#intro">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#cv">CV</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="about">
+  <div class="hero-avatar">&#128100;</div>
+  <div class="hero-text">
+    <p class="label">Naval Architecture &amp; AI — Seoul National University</p>
+    <h1>Shin Jiwoo</h1>
+    <p class="tagline">
+      Robotics &middot; Reinforcement Learning &middot; Autonomous Driving
+    </p>
+    <div class="btn-group">
+      <a href="assets/cv.pdf" class="btn btn-primary" target="_blank">View CV</a>
+      <a href="#contact" class="btn btn-secondary">Get in touch</a>
+      <a href="https://github.com/shinjju1209" class="btn btn-secondary" target="_blank">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="intro">
+  <h2>About Me</h2>
+  <p>
+    I am an undergraduate student at Seoul National University double-majoring in
+    Naval Architecture and Ocean Engineering and Artificial Intelligence.
+    My research interests lie at the intersection of robotics, reinforcement learning,
+    and autonomous systems — particularly how intelligent agents can perceive,
+    plan, and act reliably in complex real-world environments.
+  </p>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects &amp; Activities</h2>
+  <div class="project-grid">
+    <div class="project-card">
+      <div>
+        <p class="project-title">2026 Humanoid Challenge — Manipulation Team</p>
+        <p class="project-desc">
+          Grasp modelling for humanoid robot manipulation tasks.
+          Developing perception and planning pipelines to enable robust object grasping
+          in unstructured environments.
+        </p>
+      </div>
+      <span class="project-tag">Robotics</span>
+    </div>
+    <div class="project-card">
+      <div>
+        <p class="project-title">2026 KABOAT — Algorithm Team</p>
+        <p class="project-desc">
+          Developing autonomous navigation algorithms for an unmanned surface vehicle (USV)
+          competing in the Korea Autonomous Boat Competition (KABOAT).
+          Focus on path planning and obstacle avoidance.
+        </p>
+      </div>
+      <span class="project-tag">Autonomy</span>
+    </div>
+  </div>
+</section>
+
+<!-- CV -->
+<section id="cv">
+  <h2>CV / Resume</h2>
+
+  <div class="cv-block">
+    <h3>Education</h3>
+    <div class="cv-item">
+      <div class="cv-item-left">
+        <p class="cv-role">B.S. in Naval Architecture and Ocean Engineering</p>
+        <p class="cv-org">Seoul National University &mdash; double major in Artificial Intelligence</p>
+      </div>
+      <div class="cv-item-right">2023 &ndash; Present</div>
+    </div>
+  </div>
+
+  <div class="cv-block">
+    <h3>Experience</h3>
+    <div class="cv-item">
+      <div class="cv-item-left">
+        <p class="cv-role">Manipulation Team Member</p>
+        <p class="cv-org">2026 Humanoid Challenge</p>
+      </div>
+      <div class="cv-item-right">2026</div>
+    </div>
+    <div class="cv-item">
+      <div class="cv-item-left">
+        <p class="cv-role">Algorithm Team Member</p>
+        <p class="cv-org">2026 KABOAT (Korea Autonomous Boat Competition)</p>
+      </div>
+      <div class="cv-item-right">2026</div>
+    </div>
+  </div>
+
+  <div class="cv-block">
+    <h3>Skills</h3>
+    <div class="skills-list">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">ROS / ROS2</span>
+      <span class="skill-tag">PyTorch</span>
+      <span class="skill-tag">Reinforcement Learning</span>
+      <span class="skill-tag">C++</span>
+      <span class="skill-tag">MATLAB</span>
+      <span class="skill-tag">Computer Vision</span>
+      <span class="skill-tag">Motion Planning</span>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <h2>Courses I Plan to Take</h2>
+  <div class="course-grid">
+    <div class="course-card">
+      <p class="course-dept">AI</p>
+      <p class="course-name">Deep Reinforcement Learning</p>
+    </div>
+    <div class="course-card">
+      <p class="course-dept">AI</p>
+      <p class="course-name">Robot Motion Planning</p>
+    </div>
+    <div class="course-card">
+      <p class="course-dept">AI</p>
+      <p class="course-name">Computer Vision</p>
+    </div>
+    <div class="course-card">
+      <p class="course-dept">Naval Arch.</p>
+      <p class="course-name">Autonomous Marine Systems</p>
+    </div>
+    <div class="course-card">
+      <p class="course-dept">Naval Arch.</p>
+      <p class="course-name">Ocean Engineering Dynamics</p>
+    </div>
+    <div class="course-card">
+      <p class="course-dept">General</p>
+      <p class="course-name">Probability &amp; Statistics</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact</h2>
+  <ul class="contact-list">
+    <li>
+      <span class="contact-label">Email</span>
+      <a href="mailto:deloitte1@snu.ac.kr">deloitte1@snu.ac.kr</a>
+    </li>
+    <li>
+      <span class="contact-label">GitHub</span>
+      <a href="https://github.com/shinjju1209" target="_blank">github.com/shinjju1209</a>
+    </li>
+  </ul>
+</section>
+
+<!-- AI USAGE -->
+<section id="ai-usage">
+  <h2>AI Usage</h2>
+  <div class="ai-box">
+    <p>
+      <strong>Tool:</strong> Claude Code (Anthropic)<br />
+      <strong>Prompt:</strong> Build a static personal website in the repo root. Use assets/profile.jpg as the profile image. Include About Me, Projects, CV, planned courses, and contact sections. Keep the site simple and compatible with GitHub Pages. Make the page responsive and accessible.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Shin Jiwoo &mdash; Seoul National University</p>
+</footer>
+
+</body>
+</html>
