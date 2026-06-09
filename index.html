@@ -143,8 +143,17 @@
       font-size: 48px; font-weight: 700; line-height: 1.25;
       color: var(--on-dark); margin-bottom: 16px;
     }
-    .hero-sub {
+    .hero-major {
       font-size: 22px; font-weight: 400; line-height: 1.75;
+      color: var(--on-dark-mute); margin-bottom: 4px;
+    }
+    .hero-interests-label {
+      font-size: 11px; font-weight: 700; line-height: 1;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      color: var(--primary); margin-bottom: 4px;
+    }
+    .hero-interests {
+      font-size: 18px; font-weight: 400; line-height: 1.5;
       color: var(--on-dark-mute); margin-bottom: 32px;
     }
     .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -343,7 +352,8 @@
       .hero-inner { flex-direction: column; gap: 40px; }
       .hero-photo-wrap { justify-content: flex-start; }
       .hero-h1 { font-size: 36px; }
-      .hero-sub { font-size: 19px; }
+      .hero-major { font-size: 19px; }
+      .hero-interests { font-size: 16px; }
       .section { padding: 48px 24px; }
       .col-2 { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
@@ -382,7 +392,9 @@
     <div class="hero-copy">
       <p class="hero-eyebrow">Seoul National University</p>
       <h1 class="hero-h1">Shin Jiwoo</h1>
-      <p class="hero-sub">Naval Architecture &amp; AI&thinsp;·&thinsp;Robotics&thinsp;·&thinsp;Reinforcement Learning</p>
+      <p class="hero-major">Naval Architecture &amp; Ocean Engineering&thinsp;·&thinsp;Artificial Intelligence</p>
+      <p class="hero-interests-label">Interests</p>
+      <p class="hero-interests">Robotics&thinsp;·&thinsp;Reinforcement Learning&thinsp;·&thinsp;Autonomous Systems</p>
       <div class="hero-ctas">
         <a href="#cv" class="btn-primary">View CV</a>
         <a href="#projects" class="btn-outline-dark">See Projects</a>
