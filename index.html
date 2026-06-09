@@ -51,19 +51,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── UTILITY BAR ── */
-    .utility-bar {
-      background: var(--surface-elevated);
-      height: 32px;
-      display: flex; align-items: center; justify-content: flex-end;
-      padding: 0 48px; gap: 24px;
-    }
-    .utility-bar a {
-      font-size: 12px; font-weight: 400; line-height: 1.25;
-      color: var(--on-dark-mute); text-decoration: none;
-      transition: color 0.12s;
-    }
-    .utility-bar a:hover { color: var(--on-dark); }
 
     /* ── PRIMARY NAV ── */
     .primary-nav {
@@ -345,8 +332,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .utility-bar { display: none; }
-      .primary-nav { padding: 0 24px; }
+.primary-nav { padding: 0 24px; }
       .pnav-links { display: none; }
       #hero { padding: 64px 24px; }
       .hero-inner { flex-direction: column; gap: 40px; }
@@ -367,12 +353,6 @@
   </style>
 </head>
 <body>
-
-<!-- UTILITY BAR -->
-<div class="utility-bar">
-  <a href="https://github.com/shinjju1209" target="_blank">GitHub</a>
-  <a href="mailto:deloitte1@snu.ac.kr">Contact</a>
-</div>
 
 <!-- PRIMARY NAV -->
 <nav class="primary-nav">
