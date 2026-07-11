@@ -201,6 +201,47 @@
       color: var(--body-color);
     }
 
+    /* ── PROJECT CARDS (richer) ── */
+    .project-card { display: flex; flex-direction: column; }
+    .project-status {
+      position: absolute; top: 0; right: 0;
+      font-size: 10px; font-weight: 700; line-height: 1;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      color: var(--primary); background: var(--surface-soft);
+      border-left: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+      padding: 7px 10px;
+    }
+    .project-card .card-body { margin-bottom: 20px; }
+    .project-meta {
+      list-style: none; margin-top: auto;
+      border-top: 1px solid var(--hairline); padding-top: 16px;
+    }
+    .project-meta li {
+      display: flex; align-items: baseline; gap: 12px;
+      padding: 5px 0;
+    }
+    .pm-label {
+      flex: 0 0 68px;
+      font-size: 11px; font-weight: 700; line-height: 1.4;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      color: var(--primary);
+    }
+    .pm-value {
+      font-size: 14px; font-weight: 400; line-height: 1.43;
+      color: var(--body-color);
+    }
+    .pm-value a { color: var(--link-blue); text-decoration: none; }
+    .pm-value a:hover { text-decoration: underline; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .tech-chip {
+      font-size: 12px; font-weight: 700; line-height: 1;
+      letter-spacing: 0.144px; text-transform: uppercase;
+      color: var(--body-color); background: var(--surface-soft);
+      border: 1px solid var(--hairline); border-radius: var(--r);
+      padding: 6px 10px;
+    }
+
     /* ── CV ── */
     .cv-block { margin-bottom: 40px; }
     .cv-block-label {
@@ -391,19 +432,10 @@
   <div class="section-inner">
     <p class="section-eyebrow">Projects &amp; Activities</p>
     <h2 class="section-h2">Work</h2>
-    <p class="section-sub">Ongoing research and competition projects.</p>
-    <div class="card-grid col-2">
-      <div class="card">
-        <span class="card-tag">Robotics</span>
-        <h3 class="card-title">2026 Humanoid Challenge — Manipulation Team</h3>
-        <p class="card-body">Grasp modelling for humanoid robot manipulation tasks. Developing perception and planning pipelines for robust object grasping in unstructured environments.</p>
-      </div>
-      <div class="card">
-        <span class="card-tag">Autonomy</span>
-        <h3 class="card-title">2026 KABOAT — Algorithm Team</h3>
-        <p class="card-body">Autonomous navigation algorithms for an unmanned surface vehicle (USV) competing in the Korea Autonomous Boat Competition. Focus on path planning and obstacle avoidance.</p>
-      </div>
-    </div>
+    <p class="section-sub">A closer look at the research and competition projects I've taken part in — my role, the team, and the tools I worked with.</p>
+    <!-- 프로젝트 카드는 assets/projects.js 의 목록에서 자동으로 생성됩니다.
+         내용을 추가/수정하려면 그 파일만 편집하세요. -->
+    <div id="project-grid" class="card-grid col-2"></div>
   </div>
 </section>
 
@@ -562,6 +594,7 @@
     document.getElementById('tab-' + tab).classList.add('active');
   }
 </script>
+<script src="assets/projects.js"></script>
 
 </body>
 </html>
