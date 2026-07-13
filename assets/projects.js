@@ -62,7 +62,7 @@ const PROJECTS = [
       { src: "assets/photos/humanoid-challenge/pcd.png",       caption: "GPD - Point cloud data result",    desc: "Wrist cam으로 실제 물체를 찍은 뒤 pcd data로 변환한 후 TF 과정을 거친 결과를 GPD에 input으로 넣은 결과 랜덤한 물체 배치에서도 robust하게 grasp pose를 반환하는 것을 확인하였다. " },
       { src: "assets/photos/humanoid-challenge/rviz.png",      caption: "RViz visualization",              desc: "IK 기반 솔버가 내장되어있는 pymoveit을 사용하였고 rviz로 이를 확인하였다. " },
       { src: "assets/photos/humanoid-challenge/bbox.png",      caption: "Object detection (bounding box)", desc: "Perception 팀에서 YOLO로 학습시킨 너트 분류 결과이다. 어떤 너트를 집을 지 정해지면 그 너트에 해당하는 좌표로 이동해 grasp를 수행한다." },
-      { src: "assets/photos/humanoid-challenge/broken.png",     caption: "Robot down...",     desc: "대회장에 가서 준비할 수 있는 3일 중 첫번째 날에 로봇이 망가졌다. 하드웨어 오류가 뜨면서 bringup이 안되는 상황. 그로 인해 리허설도 못하고 아무런 개발도 할 수 없었다. 본사에 전화해 영상통화를 하며 분석한 결과 Navigation을 담당하는 앞바퀴가 여러번 회전하여 생긴 Multi-turn 에러였다. 허무할 정도로 간단한 에러때문에 아무것도 못한것을 보고 다양한 에러에 유연하게 대처할 수 있도록 많은 하드웨어 경험을 쌓는 것이 중요하다는 생각이 들었다." },
+      { src: "assets/photos/humanoid-challenge/broken.png",     caption: "Robot down...",     desc: "대회장에 가서 준비할 수 있는 3일 중 첫번째 날에 로봇이 망가졌다. 하드웨어 오류가 뜨면서 bringup이 안되는 상황. 그로 인해 리허설도 못하고 아무런 개발도 할 수 없었다. 본사에 전화해 영상통화를 하며 분석한 결과 Navigation을 담당하는 앞바퀴가 여러번 회전하여 생긴 Multi-turn 에러였다. 허무할 정도로 간단한 에러였다. 이번 경험 덕분에 다양한 에러에 유연하게 대처할 수 있도록 많은 하드웨어 경험이 필요하다고 느꼈다." },
       { src: "assets/photos/humanoid-challenge/ttzone.png",     caption: "Working at table tennis club in midnight",     desc: "앞서 생긴 로봇 고장으로 인해 시간을 날렸기 때문에 주변 무인탁구장을 밤부터 다음날 아침까지 대관하여 거기서 밤샘 개발을 진행했다. 이를 이틀동안 했다.." },
       { src: "assets/photos/humanoid-challenge/task.png",      caption: "Task scene",  desc: "미션 C 수행 중 로봇이 뜻대로 안움직여 좌절한 팀원들의 모습이다." },
       { src: "assets/photos/humanoid-challenge/task2.png",     caption: "Task scene",     desc: "미션 D 수행 전 로봇의 초기위치를 조정하고 있는 나와 준서형의 모습이다." },
@@ -72,6 +72,12 @@ const PROJECTS = [
     video: "",   // 예: "https://youtu.be/영상ID"  또는  "assets/humanoid.mp4"
     details: [
       // 상세 페이지 본문. 각 문자열이 한 문단입니다. 자유롭게 채워 보세요.
+      "2026 Humanoid Challenge는 12개의 대학팀이 참가하여 4개의 정해진 미션을 수행하는 대회이다. 산업현장에서의 휴머노이드 사용 가능성 실증이라는 목표 하에 너트 집어서 분류하기, 휠 체결하고 드릴로 고정하기, 박스 나르기 등의 미션을 수행하였다.",
+      "각 미션은 다음과 같다.",
+      "미션 A: 화면에 너트 종류와 수량이 뜨면 이에 맞게 너트를 집어서 옆에 있는 박스로 옮긴다.",
+      "미션 B: 박스를 집어서 일정 거리만큼 이동 후 정해진 위치에 박스를 놓는다.",
+      "미션 C: 화면에 너트 삽입 순서가 표시되면 이에 맞게 파이프에 순서대로 너트를 삽입한다.",
+      "미션 D: 휠을 파이프에 체결하고 이후 너트와 드릴을 파지해 휠을 고정한다."
     ],
     links: [
       // { label: "GitHub", url: "https://github.com/..." },
