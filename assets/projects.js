@@ -55,7 +55,7 @@ const PROJECTS = [
     period: "2026.07.01 – 2026.07.05",
     focus: "Grasp modelling · motion planning · Inverse Kinematics",
     tech: ["Python", "Gazebo", "ROS2", "MoveIt"],
-    image: "assets/photos/humanoid-challenge/together1.png",   // 대표 이미지
+    image: "assets/photos/humanoid-challenge/together2.png",   // 대표 이미지
     images: [
       // caption/desc 는 임시값입니다 — 자유롭게 수정하세요.
       { src: "assets/photos/humanoid-challenge/gpd.png",       caption: "Grasp pose detection",            desc: "불규칙적으로 쌓여 있는 물체를 집는 Task를 수행하기 위해 Gpd 라는 CNN기반 grasp pose를 반환하는 모델을 사용하였다. Point cloud를 input으로 받아 가장 적절한 grasp pose를 반환한다. " },
@@ -64,10 +64,10 @@ const PROJECTS = [
       { src: "assets/photos/humanoid-challenge/bbox.png",      caption: "Object detection (bounding box)", desc: "Perception 팀에서 YOLO로 학습시킨 너트 분류 결과이다. 어떤 너트를 집을 지 정해지면 그 너트에 해당하는 좌표로 이동해 grasp를 수행한다." },
       { src: "assets/photos/humanoid-challenge/broken.png",     caption: "Robot down...",     desc: "대회장에 가서 준비할 수 있는 3일 중 첫번째 날에 로봇이 망가졌다. 하드웨어 오류가 뜨면서 bringup이 안되는 상황. 그로 인해 리허설도 못하고 아무런 개발도 할 수 없었다. 본사에 전화해 영상통화를 하며 분석한 결과 Navigation을 담당하는 앞바퀴가 여러번 회전하여 생긴 Multi-turn 에러였다. 허무할 정도로 간단한 에러때문에 아무것도 못한것을 보고 많은 로봇 사용경험을 쌓는 것이 중요하다는 생각이 들었다." },
       { src: "assets/photos/humanoid-challenge/ttzone.png",     caption: "Working at table tennis club in midnight",     desc: "앞서 생긴 로봇 고장으로 인해 시간을 날렸기 때문에 주변 무인탁구장을 밤부터 다음날 아침까지 대관하여 거기서 밤샘 개발을 진행했다. 이를 이틀동안 했다.." },
-      { src: "assets/photos/humanoid-challenge/task.png",      caption: "Task scene",  desc: "로봇이 뜻대로 안움직여 좌절한 팀원들의 모습이다." },
-      { src: "assets/photos/humanoid-challenge/task2.png",     caption: "Task scene",     desc: "" },
+      { src: "assets/photos/humanoid-challenge/task.png",      caption: "Task scene",  desc: "미션 C 수행 중 로봇이 뜻대로 안움직여 좌절한 팀원들의 모습이다." },
+      { src: "assets/photos/humanoid-challenge/task2.png",     caption: "Task scene",     desc: "미션 D 수행 전 로봇의 초기위치를 조정하고 있는 나와 준서형의 모습이다." },
       { src: "assets/photos/humanoid-challenge/task3.png",     caption: "Task scene",     desc: "" },
-      { src: "assets/photos/humanoid-challenge/together2.png", caption: "Team",           desc: "별다른 사고 없이 대회를 잘 끝마친 우리 팀의 사진이다. 비록 입상은 하지 못했지만 많은 점을 배울 수 있었던 뜻깊은 시간이었다." },
+      { src: "assets/photos/humanoid-challenge/together1.png", caption: "Team",           desc: "별다른 사고 없이 대회를 잘 끝마친 우리 팀의 사진이다. 비록 입상은 하지 못했지만 많은 점을 배울 수 있었던 뜻깊은 시간이었다." },
     ],
     video: "",   // 예: "https://youtu.be/영상ID"  또는  "assets/humanoid.mp4"
     details: [
