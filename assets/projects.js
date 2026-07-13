@@ -306,29 +306,36 @@ function videoEmbed(url) {
   //   1) "assets/a.jpg"                                        (사진만)
   //   2) { src, caption }                                      (사진 + 제목 한 줄)
   //   3) { src, caption, desc }                                (사진 + 제목 + 상세 설명)
-  const gallery =
+  const galleryItems =
     p.images && p.images.length
-      ? `<p class="detail-block-label">Gallery</p>
-         <div class="detail-gallery">${p.images
-           .map((img) => {
-             const src = typeof img === "string" ? img : img.src;
-             const caption = typeof img === "string" ? "" : img.caption;
-             const desc = typeof img === "string" ? "" : img.desc;
-             if (!src) return "";
-             const cap =
-               caption || desc
-                 ? `<figcaption>
-                     ${caption ? `<span class="gcap-title">${escHtml(caption)}</span>` : ""}
-                     ${desc ? `<span class="gcap-desc">${escHtml(desc)}</span>` : ""}
-                   </figcaption>`
-                 : "";
-             return `<figure>
-               <img src="${escHtml(src)}" alt="${escHtml(caption || p.title)}" loading="lazy" />
-               ${cap}
-             </figure>`;
-           })
-           .join("")}</div>`
-      : "";
+      ? p.images
+          .map((img) => {
+            const src = typeof img === "string" ? img : img.src;
+            const caption = typeof img === "string" ? "" : img.caption || "";
+            const desc = typeof img === "string" ? "" : img.desc || "";
+            return { src, caption, desc };
+          })
+          .filter((it) => it.src)
+      : [];
+
+  const gallery = galleryItems.length
+    ? `<p class="detail-block-label">Gallery</p>
+       <div class="detail-gallery">${galleryItems
+         .map((it, i) => {
+           const cap =
+             it.caption || it.desc
+               ? `<figcaption>
+                   ${it.caption ? `<span class="gcap-title">${escHtml(it.caption)}</span>` : ""}
+                   ${it.desc ? `<span class="gcap-desc">${escHtml(it.desc)}</span>` : ""}
+                 </figcaption>`
+               : "";
+           return `<figure class="gallery-item" data-gindex="${i}" tabindex="0" role="button" aria-label="${escHtml(it.caption || p.title)} — 확대 보기">
+             <img src="${escHtml(it.src)}" alt="${escHtml(it.caption || p.title)}" loading="lazy" />
+             ${cap}
+           </figure>`;
+         })
+         .join("")}</div>`
+    : "";
 
   root.innerHTML = `
     <header class="detail-hero">
@@ -350,4 +357,107 @@ function videoEmbed(url) {
         ${links}
       </div>
     </section>`;
+
+  // 갤러리 이미지 클릭 시 확대(라이트박스)로 보여 주기
+  setupLightbox(galleryItems, p.title);
 })();
+
+// 라이트박스: 갤러리 사진을 클릭하면 큰 화면으로 확대하고
+//            제목 · 상세 설명 · 순번을 함께 보여 준다. (Esc / ← → 지원)
+function setupLightbox(items, projectTitle) {
+  if (!items || !items.length) return;
+
+  const gallery = document.querySelector(".detail-gallery");
+  if (!gallery) return;
+
+  // 라이트박스 DOM 생성 (한 번만)
+  const lb = document.createElement("div");
+  lb.className = "lightbox";
+  lb.setAttribute("aria-hidden", "true");
+  lb.innerHTML = `
+    <div class="lb-backdrop"></div>
+    <button class="lb-close" type="button" aria-label="닫기">&times;</button>
+    <button class="lb-nav lb-prev" type="button" aria-label="이전 사진">&#8249;</button>
+    <button class="lb-nav lb-next" type="button" aria-label="다음 사진">&#8250;</button>
+    <figure class="lb-figure" role="dialog" aria-modal="true" aria-label="확대된 사진">
+      <img class="lb-img" src="" alt="" />
+      <figcaption class="lb-caption">
+        <span class="lb-title"></span>
+        <span class="lb-desc"></span>
+        <span class="lb-count"></span>
+      </figcaption>
+    </figure>`;
+  document.body.appendChild(lb);
+
+  const imgEl = lb.querySelector(".lb-img");
+  const titleEl = lb.querySelector(".lb-title");
+  const descEl = lb.querySelector(".lb-desc");
+  const countEl = lb.querySelector(".lb-count");
+  const prevBtn = lb.querySelector(".lb-prev");
+  const nextBtn = lb.querySelector(".lb-next");
+
+  let current = 0;
+  let lastFocused = null;
+
+  function render() {
+    const it = items[current];
+    imgEl.src = it.src;
+    imgEl.alt = it.caption || projectTitle;
+
+    titleEl.textContent = it.caption || "";
+    titleEl.style.display = it.caption ? "" : "none";
+    descEl.textContent = it.desc || "";
+    descEl.style.display = it.desc ? "" : "none";
+    countEl.textContent = `${current + 1} / ${items.length}`;
+
+    const multiple = items.length > 1;
+    prevBtn.style.display = multiple ? "" : "none";
+    nextBtn.style.display = multiple ? "" : "none";
+  }
+
+  function open(index) {
+    current = index;
+    lastFocused = document.activeElement;
+    render();
+    lb.classList.add("is-open");
+    lb.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lb-lock");
+    lb.querySelector(".lb-close").focus();
+  }
+
+  function close() {
+    lb.classList.remove("is-open");
+    lb.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lb-lock");
+    if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+  }
+
+  function step(delta) {
+    current = (current + delta + items.length) % items.length;
+    render();
+  }
+
+  // 썸네일 클릭 / 키보드(Enter·Space)로 열기
+  gallery.querySelectorAll(".gallery-item").forEach((fig) => {
+    const idx = Number(fig.getAttribute("data-gindex"));
+    fig.addEventListener("click", () => open(idx));
+    fig.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        open(idx);
+      }
+    });
+  });
+
+  lb.querySelector(".lb-close").addEventListener("click", close);
+  lb.querySelector(".lb-backdrop").addEventListener("click", close);
+  prevBtn.addEventListener("click", () => step(-1));
+  nextBtn.addEventListener("click", () => step(1));
+
+  document.addEventListener("keydown", (e) => {
+    if (!lb.classList.contains("is-open")) return;
+    if (e.key === "Escape") close();
+    else if (e.key === "ArrowLeft") step(-1);
+    else if (e.key === "ArrowRight") step(1);
+  });
+}
