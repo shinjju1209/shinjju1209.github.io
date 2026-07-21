@@ -88,6 +88,31 @@ const PROJECTS = [
     ],
   },
   {
+    tag: "Robotics",
+    title: "KAIST X SNU Roboticus Hackathon",
+    status: "Ongoing",
+    body: "Learning low-level torque control, Quasi-Direct-Drive actuator and bridging Sim2real gap.",
+    role: "Motion planning",
+    team: "Phase-Up",
+    teamUrl: "",
+    period: "2026.08.03 - 2026.08.08",
+    focus: "",
+    tech: [],
+    image: "",
+    images: [
+      "",
+      { src: "", caption: "", desc: "" },
+    ],
+    video: "",
+    details: [
+      "",
+      "",
+    ],
+    links: [
+      { label: "GitHub", url: "" },
+    ],
+  },
+  {
     tag: "Autonomy",
     title: "2026 KABOAT — Algorithm Team",
     status: "Ongoing",
