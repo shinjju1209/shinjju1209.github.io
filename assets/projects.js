@@ -77,7 +77,12 @@ const PROJECTS = [
       "미션 A: 화면에 너트 종류와 수량이 뜨면 이에 맞게 너트를 집어서 옆에 있는 박스로 옮긴다.",
       "미션 B: 박스를 집어서 일정 거리만큼 이동 후 정해진 위치에 박스를 놓는다.",
       "미션 C: 화면에 너트 삽입 순서가 표시되면 이에 맞게 파이프에 순서대로 너트를 삽입한다.",
-      "미션 D: 휠을 파이프에 체결하고 이후 너트와 드릴을 파지해 휠을 고정한다."
+      "미션 D: 휠을 파이프에 체결하고 이후 너트와 드릴을 파지해 휠을 고정한다.",
+      "우리 팀은 미션 수행을 위해 Manipulation, Navigation, Perception, System 팀으로 역할을 나누었고 나는 Maniplation team 에서 개발을 진행하였다. 초기 대회 규정에는 미션 A에서 여러 너트 부품들이 불규칙적으로 Stacking 되어있을 것이라고 주어졌기 때문에 Robust한 Grasp를 수행하기 위해 CNN 기반 grasp candidate 생성 모델인 GPD를 우리 로봇에 적용하는 작업을 맡았다. wrist cam으로 들어온 pcd 데이터를 input으로 받고 grasp를 수행하기 적합한 End effector 좌표와 orientation을 반환한다. 실제 여러 너트가 stacking 되어있는 pcd data를 input으로 넣었을 때 실제 Grasp 가능성이 높은 여러 candidate를 반환하고 그 좌표까지 Gripper가 이동하는 것을 확인하였으나 갑자기 대회 규정이 너트들이 Stacking 되어있는 것에서 평면 배치로 바뀌면서 GPD를 쓸 이유가 사라졌다.",
+      "그 뒤로는 여러가지 IK 알고리즘을 moveit 상에서 시뮬레이션으로 검증하며 빠르고  안전하게 motion planning을 하는지 검증하는 역할을 맡았다. 초기에는 manipulation을 수행할 때 IK 기반으로 진행할 지 강화학습 기반으로 진행할 지 고민하였으나 보상함수 설정의 어려움, 장애물 회피 기능, 구현 난이도 등을 이유로 IK 기반 moveit을 사용하기로 결정했다. 특히 책상과 여러 부품 등을 장애물로 등록하고 장애물과 부딪히지 않게 planning 하는 기능이 이미 있었기 때문에 이를 적극 활용하였다. ",
+      "",
+      "",
+      ""
     ],
     links: [
       // { label: "GitHub", url: "https://github.com/..." },
