@@ -344,6 +344,7 @@ function videoEmbed(url) {
 
   root.innerHTML = `
     <header class="detail-hero">
+      <a class="detail-close" href="index.html#projects" aria-label="프로젝트 목록으로 닫기" title="닫기">&times;</a>
       <div class="detail-inner">
         <a class="detail-back" href="index.html#projects">← All projects</a>
         <div class="detail-tagline">${tag}${status}</div>
