@@ -342,7 +342,7 @@ a.card-link:hover .card-more { text-decoration: underline; }
 /* Lightbox — 갤러리 사진 확대 보기 */
 body.lb-lock { overflow: hidden; }
 .lightbox {
-  position: fixed; inset: 0; z-index: 1000;
+  position: fixed; inset: 0; z-index: 10000;
   display: none; align-items: center; justify-content: center;
   padding: 40px;
 }
